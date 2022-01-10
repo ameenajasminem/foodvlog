@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	<head>
+		<title>Shopping Cart</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="{% static 'cart/css/bootstrap.min.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'cart/css/custom.css' %}"/>
+	<style>
+		$quantity-btn-color: #95d7fc;
+.product {
+	width: 30%;
+	margin: 30px;
+}
+.form-group {
+	width: 30%;
+	margin: 30px;
+	.glyphicon {
+		color: $quantity-btn-color;
+	}
+}
+	</style>
+	</head>
+
+
+	<body>
+
+		<nav class="navbar">
+			<div class="container">
+				<a class="navbar-brand" href="#"><b>Your Cart</b></a>
+				<div class="navbar-right">
+					<div class="container minicart"></div>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container-fluid breadcrumbBox text-center">
+			<ol class="breadcrumb">
+				<li><a href="#">Review</a></li>
+				<li class="active"><a href="#">Order</a></li>
+				<li><a href="#">Payment</a></li>
+			</ol>
+		</div>
+
+		<div class="container text-center">
+
+			<div class="col-md-5 col-sm-12">
+				<div class="bigcart"></div>
+				<h1>Your shopping cart</h1>
+<div class="form-group">
+
+
+`
+    </div>
+			</div>
+
+		{% for i in ci %}
+
+			<div class="col-md-11 col-sm-12 text-left">
+				<div class="input-group"></div>
+
+				<ul>
+					<a href="{{i.prodt.get_url}}"> <img class="product" src="{{i.prodt.img.url}}" alt="{{i.prodt.name}}" style="height:70;"></a>
+<p><span class="price">rs {{i.prodt.price}}/ kg<hr><a href="{% url 'addcart' i.prodt.id %}">+</a><input type="text" id="myNumber" class="form-control input-number" value="{{i.quan}}" ><a href="{% url 'cart_decrement' i.prodt.id %}">-</a></span> </p>
+
+					<li class="row list-inline columnCaptions">
+						<span>ID</span>
+						<span>QuanTity</span>
+
+						<span>ITEM</span>
+						<span>T.Price</span>
+
+					</li>
+					<li class="row">
+
+
+
+
+						<span class="quantity">{{i.prodt.id}}</span>
+                        <span class="quantity">{{i.quan}}</span>
+
+						<span class="itemName">&nbsp;&nbsp;{{i.prodt.name}}</span>
+
+						<span class="popbtn"><a class="arrow"></a></span>
+						<span class="price">{{i.total}}</span>
+
+						<br>
+
+								 <br>
+								 <br>
+								 <br>
+
+
+
+
+<span class="delete"> <a class="text-center"><a href="{% url 'remove' i.prodt.id %}">DELETE</a></span>
+
+			</div>
+
+		</div>
+{% endfor %}
+		<br>
+<li class="row totals">
+						<span class="itemName">Total:</span>
+						<span class="price">{{t}}</span>
+<span class="order"> <a class="text-center">ORDER</a></span>
+					</li>
+				</ul>
+		<!-- The popover content -->
+
+		<div id="popover" style="display: none">
+			<a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+			<a href="#"><span class="glyphicon glyphicon-remove"></span></a>
+		</div>
+
+		<!-- JavaScript includes -->
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="{% static 'cart/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'cart/js/customjs.js' %}"></script>
+
+	</body>
+ {% endblock %}

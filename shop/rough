@@ -1,0 +1,12 @@
+<div class="dropdown">
+  <button class="dropbtn">FILTER</button>
+  <div class="dropdown_content">
+    <a href="/">ALL</a>
+
+      <b style="color:white">
+    <a href={{i.get_url}}>{{i.name}}</a><br>
+         </b>
+
+
+  </div>
+</div>
